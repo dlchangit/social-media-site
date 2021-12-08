@@ -6,22 +6,13 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { Header } from './Header';
 
 function App() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
+        <Header />
 
         <hr />
 
