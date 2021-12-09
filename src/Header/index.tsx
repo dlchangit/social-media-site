@@ -4,8 +4,13 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import { Box } from '@mui/system';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGender } from '../actions'
+import { RootState } from '..';
+import { useLocation } from 'react-router-dom'
 
 const HeaderWrap = styled.div`
+  padding-top: 25px;
   width: 100%;
   height: 50px;
   border-bottom: 1px solid #EEEEEE;
@@ -14,7 +19,7 @@ const HeaderWrap = styled.div`
   box-shadow: 1px 1px 4px #EEEEEE
 `
 
-const Link = styled.a`
+const Link = styled.a<{isCurrentPage?: boolean}>`
   text-decoration: none;
   color: black;
   display: flex;
@@ -22,12 +27,19 @@ const Link = styled.a`
   align-items: center;
   justify-content: center;
   width: 150px;
+  cursor: poiner;
   :hover {
     border-bottom: 2px solid black;
   }
   span {
     margin-left: 5px;
   }
+  ${props => props.isCurrentPage && `
+    border-bottom: 2px solid black;
+    :hover {
+      cursor: auto;
+    }
+  `}
 `
 
 const GenderButton = styled.button<{isSelected?: boolean}>`
@@ -52,20 +64,23 @@ const GenderButton = styled.button<{isSelected?: boolean}>`
 `
 
 export default function Header() {
-  const [gender, setGender] = useState<String>('All');
+  const location = useLocation();
+  const selectedGender = useSelector((state:RootState) => state.gender);
+  const dispatch = useDispatch();
+  // const [gender, setGender] = useState<String>(selectedGender);
   return (
     <HeaderWrap>
       <Box sx={{ width: '980px', display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex' }} textAlign="left" >
-          <Link href="/"><HomeOutlinedIcon /><span>Home</span></Link>
-          <Link href="/friends"><GroupOutlinedIcon /><span>My Friends</span></Link>
-          <Link href="/random"><PersonAddOutlinedIcon /><span>Random Pick</span></Link>
+          <Link href="/" isCurrentPage={location.pathname === '/'}><HomeOutlinedIcon /><span>Home</span></Link>
+          <Link href="/friends" isCurrentPage={location.pathname === '/friends'}><GroupOutlinedIcon /><span>My Friends</span></Link>
+          <Link href="/random" isCurrentPage={location.pathname === '/random'}><PersonAddOutlinedIcon /><span>Random Pick</span></Link>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
           <span>Gender: </span>
-          <GenderButton onClick={() => setGender('All')} isSelected={gender === 'All'}>All</GenderButton>
-          <GenderButton onClick={() => setGender('M')} isSelected={gender === 'M'}>M</GenderButton>
-          <GenderButton onClick={() => setGender('F')} isSelected={gender === 'F'}>F</GenderButton>
+          <GenderButton onClick={() => dispatch(setGender('All'))} isSelected={selectedGender === 'All'}>All</GenderButton>
+          <GenderButton onClick={() => dispatch(setGender('M'))} isSelected={selectedGender === 'M'}>M</GenderButton>
+          <GenderButton onClick={() => dispatch(setGender('F'))} isSelected={selectedGender === 'F'}>F</GenderButton>
         </Box>
       </Box>
     </HeaderWrap>

@@ -9,8 +9,11 @@ import {
 import Header from './Header';
 import Home from './pages/Home';
 import Friends from './pages/Friends';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 function App() {
+  
   return (
     <Router>
       <div>
