@@ -11,9 +11,12 @@ const HeaderWrap = styled.div`
   border-bottom: 1px solid #EEEEEE;
   display: flex;
   justify-content: center;
+  box-shadow: 1px 1px 4px #EEEEEE
 `
 
-const Link = styled.div`
+const Link = styled.a`
+  text-decoration: none;
+  color: black;
   display: flex;
   height: 50px;
   align-items: center;
@@ -54,9 +57,9 @@ export default function Header() {
     <HeaderWrap>
       <Box sx={{ width: '980px', display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex' }} textAlign="left" >
-          <Link><HomeOutlinedIcon /><span>Home</span></Link>
-          <Link><GroupOutlinedIcon /><span>My Friends</span></Link>
-          <Link><PersonAddOutlinedIcon /><span>Random Pick</span></Link>
+          <Link href="/"><HomeOutlinedIcon /><span>Home</span></Link>
+          <Link href="/friends"><GroupOutlinedIcon /><span>My Friends</span></Link>
+          <Link href="/random"><PersonAddOutlinedIcon /><span>Random Pick</span></Link>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
           <span>Gender: </span>

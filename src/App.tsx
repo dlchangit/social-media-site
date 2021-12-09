@@ -7,6 +7,8 @@ import {
   Link
 } from "react-router-dom";
 import Header from './Header';
+import Home from './pages/Home';
+import Friends from './pages/Friends';
 
 function App() {
   return (
@@ -23,14 +25,9 @@ function App() {
           of them to render at a time
         */}
         <Routes>
-          <Route path="/">
-            {/* <Home /> */}Home
-          </Route>
-          <Route path="/about">
-            {/* <About /> */}
-            About
-          </Route>
-          <Route path="/dashboard">
+        <Route path="/" element={<Home/>} />
+        <Route path="/friends" element={<Friends/>} />
+          <Route path="/random">
             {/* <Dashboard /> */}
             Dash
           </Route>
