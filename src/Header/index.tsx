@@ -3,6 +3,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import { Box } from '@mui/system';
+import { useState } from 'react';
 
 const HeaderWrap = styled.div`
   width: 100%;
@@ -33,6 +34,7 @@ const GenderButton = styled.button<{isSelected?: boolean}>`
 
   :hover {
     border: 1px solid black;
+    cursor: pointer;
   }
   :selected {
     border: 1px solid black;
@@ -40,10 +42,14 @@ const GenderButton = styled.button<{isSelected?: boolean}>`
 
   ${props => props.isSelected && `
     border: 1px solid black;
+    :hover {
+      cursor: auto;
+    }
   `}
 `
 
 export default function Header() {
+  const [gender, setGender] = useState<String>('All');
   return (
     <HeaderWrap>
       <Box sx={{ width: '980px', display: 'flex', justifyContent: 'space-between' }}>
@@ -54,9 +60,9 @@ export default function Header() {
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
           <span>Gender: </span>
-          <GenderButton isSelected>All</GenderButton>
-          <GenderButton>M</GenderButton>
-          <GenderButton>F</GenderButton>
+          <GenderButton onClick={() => setGender('All')} isSelected={gender === 'All'}>All</GenderButton>
+          <GenderButton onClick={() => setGender('M')} isSelected={gender === 'M'}>M</GenderButton>
+          <GenderButton onClick={() => setGender('F')} isSelected={gender === 'F'}>F</GenderButton>
         </Box>
       </Box>
     </HeaderWrap>
