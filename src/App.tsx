@@ -6,7 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { Header } from './Header';
+import Header from './Header';
 
 function App() {
   return (
@@ -14,7 +14,6 @@ function App() {
       <div>
         <Header />
 
-        <hr />
 
         {/*
           A <Switch> looks through all its children <Route>
