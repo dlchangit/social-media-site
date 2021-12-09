@@ -16,7 +16,7 @@ const HeaderWrap = styled.div`
   border-bottom: 1px solid #EEEEEE;
   display: flex;
   justify-content: center;
-  box-shadow: 1px 1px 4px #EEEEEE
+  box-shadow: 1px 1px 4px #EEEEEE;
 `
 
 const Link = styled.a<{isCurrentPage?: boolean}>`
@@ -44,15 +44,12 @@ const Link = styled.a<{isCurrentPage?: boolean}>`
 
 const GenderButton = styled.button<{isSelected?: boolean}>`
   margin-left: 5px;
-  Background-color: white;
+  background-color: white;
   border: 1px solid transparent;
 
   :hover {
     border: 1px solid black;
     cursor: pointer;
-  }
-  :selected {
-    border: 1px solid black;
   }
 
   ${props => props.isSelected && `
