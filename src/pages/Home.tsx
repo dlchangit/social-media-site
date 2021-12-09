@@ -1,5 +1,10 @@
+import React from "react";
+import { ContentWrap, PageWrap } from "./style"
+
 export default function Home() {
     return(
-        <div>HomePage</div>
+        <PageWrap>
+            <ContentWrap>HomePage</ContentWrap>
+        </PageWrap>
     );
 }

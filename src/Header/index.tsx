@@ -19,7 +19,7 @@ const HeaderWrap = styled.div`
   box-shadow: 1px 1px 4px #EEEEEE;
 `
 
-const Link = styled.a<{isCurrentPage?: boolean}>`
+const Link = styled.a<{isCurrentPage?: boolean, isHover?: boolean}>`
   text-decoration: none;
   color: black;
   display: flex;
@@ -39,6 +39,10 @@ const Link = styled.a<{isCurrentPage?: boolean}>`
     :hover {
       cursor: auto;
     }
+  `}
+
+${props => props.isHover && `
+    border-bottom: 2px solid black;
   `}
 `
 
@@ -63,15 +67,21 @@ const GenderButton = styled.button<{isSelected?: boolean}>`
 export default function Header() {
   const location = useLocation();
   const selectedGender = useSelector((state:RootState) => state.gender);
+  const [hoverLink, setHoverLink] = useState('');
   const dispatch = useDispatch();
   // const [gender, setGender] = useState<String>(selectedGender);
+
+  const onMouseOutLink = () => {
+    setHoverLink('');
+  }
+
   return (
     <HeaderWrap>
       <Box sx={{ width: '980px', display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex' }} textAlign="left" >
-          <Link href="/" isCurrentPage={location.pathname === '/'}><HomeOutlinedIcon /><span>Home</span></Link>
-          <Link href="/friends" isCurrentPage={location.pathname === '/friends'}><GroupOutlinedIcon /><span>My Friends</span></Link>
-          <Link href="/random" isCurrentPage={location.pathname === '/random'}><PersonAddOutlinedIcon /><span>Random Pick</span></Link>
+          <Link href="/" isCurrentPage={location.pathname === '/' && hoverLink === ''} isHover={hoverLink === '/'} onMouseOver={() => setHoverLink('/')} onMouseOut={() => onMouseOutLink()}><HomeOutlinedIcon /><span>Home</span></Link>
+          <Link href="/friends" isCurrentPage={location.pathname === '/friends' && hoverLink === ''} isHover={hoverLink === '/friends'} onMouseOver={() => setHoverLink('/friends')} onMouseOut={() => onMouseOutLink()}><GroupOutlinedIcon /><span>My Friends</span></Link>
+          <Link href="/random" isCurrentPage={location.pathname === '/random' && hoverLink === ''} isHover={hoverLink === '/random'} onMouseOver={() => setHoverLink('/random')} onMouseOut={() => onMouseOutLink()}><PersonAddOutlinedIcon /><span>Random Pick</span></Link>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
           <span>Gender: </span>
