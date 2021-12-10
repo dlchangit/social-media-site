@@ -13,6 +13,29 @@ export const ContentWrap = styled.div`
 
 export const PageContentTop = styled.div`
     display: flex;
-    font-size: 20px;
     margin-bottom: 15px;
+    justify-content: space-between;
+
+    .title {
+        font-size: 20px;
+    }
+`
+
+export const UserPerRowButton = styled.button<{isSelected?: boolean}>`
+    width: 30px;
+    margin-left: 5px;
+    background-color: white;
+    border: 1px solid transparent;
+
+    :hover {
+        border: 1px solid black;
+        cursor: pointer;
+    }
+
+    ${props => props.isSelected && `
+        border: 1px solid black;
+        :hover {
+            cursor: auto;
+        }
+    `}
 `

@@ -5,6 +5,13 @@ export const setGender = (gender: string) => {
     };
 };
 
+export const setUserPerRow = (numnber: number) => {
+    return {
+        type: 'SET_USER_PER_ROW',
+        payload: numnber
+    };
+};
+
 export const setUserData = (data: []) => {
     return {
         type: 'SET_USER_DATA',

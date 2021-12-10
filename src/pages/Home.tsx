@@ -1,20 +1,35 @@
-import { Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "..";
-import { ContentWrap, PageContentTop, PageWrap } from "./style"
+import { ContentWrap, PageContentTop, UserPerRowButton, PageWrap } from "./style"
 import ImageAvatar from "../components/ImageAvatar"
+import { setUserPerRow } from "../actions";
 
 export default function Home() {
     const userData = useSelector((state:RootState) => state.userData);
     const selectedGender = useSelector((state:RootState) => state.gender);
     const userPerRow = useSelector((state:RootState) => state.userPerRow);
-    console.log(12/userPerRow)
+    const dispatch = useDispatch();
     return(
         <PageWrap>
             <ContentWrap>
             {/* <Stack direction="row" spacing={1}> */}
-            <PageContentTop>All Users</PageContentTop>
+            <PageContentTop>
+                <span className='title'>All Users</span>
+                <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
+                    <span>User per row: </span>
+                    <UserPerRowButton onClick={() => dispatch(setUserPerRow(5))} isSelected={userPerRow === 5}>
+                        5
+                    </UserPerRowButton>
+                    <UserPerRowButton onClick={() => dispatch(setUserPerRow(10))} isSelected={userPerRow === 10}>
+                        10
+                    </UserPerRowButton>
+                    <UserPerRowButton onClick={() => dispatch(setUserPerRow(15))} isSelected={userPerRow === 15}>
+                        15
+                    </UserPerRowButton>
+                </Box>
+            </PageContentTop>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 2 }}>
                 {userData.map((it: any, idx: number) => {
                     if(selectedGender === 'M' && it.gender === 'male' || selectedGender === 'F' && it.gender === 'female' || selectedGender === 'All') {
