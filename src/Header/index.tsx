@@ -52,6 +52,7 @@ ${props => props.isHover && `
 `
 
 const GenderButton = styled.button<{isSelected?: boolean}>`
+  width: 30px;
   margin-left: 5px;
   background-color: white;
   border: 1px solid transparent;
@@ -84,15 +85,33 @@ export default function Header() {
     <HeaderWrap>
       <Box sx={{ width: '980px', display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex' }} textAlign="left" >
-          <Link to="/" className="menu-item"><LinkContent isCurrentPage={location.pathname === '/' && hoverLink === ''} isHover={hoverLink === '/'} onMouseOver={() => setHoverLink('/')} onMouseOut={() => onMouseOutLink()}><HomeOutlinedIcon /><span>Home</span></LinkContent></Link>
-          <Link to="/friends" className="menu-item"><LinkContent isCurrentPage={location.pathname === '/friends' && hoverLink === ''} isHover={hoverLink === '/friends'} onMouseOver={() => setHoverLink('/friends')} onMouseOut={() => onMouseOutLink()}><GroupOutlinedIcon /><span>My Friends</span></LinkContent></Link>
-          <Link to="/random" className="menu-item"><LinkContent isCurrentPage={location.pathname === '/random' && hoverLink === ''} isHover={hoverLink === '/random'} onMouseOver={() => setHoverLink('/random')} onMouseOut={() => onMouseOutLink()}><PersonAddOutlinedIcon /><span>Random Pick</span></LinkContent></Link>
+          <Link to="/" className="menu-item">
+            <LinkContent isCurrentPage={location.pathname === '/' && hoverLink === ''} isHover={hoverLink === '/'} onMouseOver={() => setHoverLink('/')} onMouseOut={() => onMouseOutLink()}>
+              <HomeOutlinedIcon />Home
+            </LinkContent>
+          </Link>
+          <Link to="/friends" className="menu-item">
+            <LinkContent isCurrentPage={location.pathname === '/friends' && hoverLink === ''} isHover={hoverLink === '/friends'} onMouseOver={() => setHoverLink('/friends')} onMouseOut={() => onMouseOutLink()}>
+              <GroupOutlinedIcon />My Friends
+            </LinkContent>
+          </Link>
+          <Link to="/random" className="menu-item">
+            <LinkContent isCurrentPage={location.pathname === '/random' && hoverLink === ''} isHover={hoverLink === '/random'} onMouseOver={() => setHoverLink('/random')} onMouseOut={() => onMouseOutLink()}>
+              <PersonAddOutlinedIcon />Random Pick
+            </LinkContent>
+          </Link>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
           <span>Gender: </span>
-          <GenderButton onClick={() => dispatch(setGender('All'))} isSelected={selectedGender === 'All'}>All</GenderButton>
-          <GenderButton onClick={() => dispatch(setGender('M'))} isSelected={selectedGender === 'M'}>M</GenderButton>
-          <GenderButton onClick={() => dispatch(setGender('F'))} isSelected={selectedGender === 'F'}>F</GenderButton>
+          <GenderButton onClick={() => dispatch(setGender('All'))} isSelected={selectedGender === 'All'}>
+            All
+          </GenderButton>
+          <GenderButton onClick={() => dispatch(setGender('M'))} isSelected={selectedGender === 'M'}>
+            M
+          </GenderButton>
+          <GenderButton onClick={() => dispatch(setGender('F'))} isSelected={selectedGender === 'F'}>
+            F
+          </GenderButton>
         </Box>
       </Box>
     </HeaderWrap>

@@ -19,6 +19,11 @@ export const initialState = {
                     ...state,
                     gender: action.payload,
                 };
+            case actionTypes.SET_USER_PER_ROW:
+                return {
+                    ...state,
+                    userPerRow: action.payload,
+                };
             case actionTypes.SET_USER_DATA:
                 return {
                     ...state,
