@@ -55,25 +55,6 @@ ${props => props.isHover && `
   `}
 `
 
-const GenderButton = styled.button<{isSelected?: boolean}>`
-  width: 30px;
-  margin-left: 5px;
-  background-color: white;
-  border: 1px solid transparent;
-
-  :hover {
-    border: 1px solid black;
-    cursor: pointer;
-  }
-
-  ${props => props.isSelected && `
-    border: 1px solid black;
-    :hover {
-      cursor: auto;
-    }
-  `}
-`
-
 export default function Header() {
   const location = useLocation();
   const selectedGender = useSelector((state:RootState) => state.gender);

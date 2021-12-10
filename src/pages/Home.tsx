@@ -2,7 +2,7 @@ import { Box, Grid } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "..";
-import { ContentWrap, PageContentTop, UserPerRowButton, PageWrap } from "./style"
+import { ContentWrap, PageContentTop, PageWrap } from "./style"
 import { ImageAvatar, SelectionButtonList } from "../components/";
 import { setUserPerRow } from "../actions";
 import { Link } from "react-router-dom";

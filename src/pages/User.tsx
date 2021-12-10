@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { RootState } from "..";
-import { ContentWrap, PageContentTop, UserPerRowButton, PageWrap } from "./style"
+import { PageWrap } from "./style"
 
 export default function User() {
     const location = useLocation();

@@ -20,22 +20,3 @@ export const PageContentTop = styled.div`
         font-size: 20px;
     }
 `
-
-export const UserPerRowButton = styled.button<{isSelected?: boolean}>`
-    width: 30px;
-    margin-left: 5px;
-    background-color: white;
-    border: 1px solid transparent;
-
-    :hover {
-        border: 1px solid black;
-        cursor: pointer;
-    }
-
-    ${props => props.isSelected && `
-        border: 1px solid black;
-        :hover {
-            cursor: auto;
-        }
-    `}
-`
