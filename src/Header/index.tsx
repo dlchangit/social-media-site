@@ -7,7 +7,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGender } from '../actions'
 import { RootState } from '..';
-import { useLocation } from 'react-router-dom'
+import { Router, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const HeaderWrap = styled.div`
   padding-top: 25px;
@@ -17,9 +18,13 @@ const HeaderWrap = styled.div`
   display: flex;
   justify-content: center;
   box-shadow: 1px 1px 4px #EEEEEE;
+
+  .menu-item {
+    text-decoration: none;
+  }
 `
 
-const Link = styled.a<{isCurrentPage?: boolean, isHover?: boolean}>`
+const LinkContent = styled.div<{isCurrentPage?: boolean, isHover?: boolean}>`
   text-decoration: none;
   color: black;
   display: flex;
@@ -79,9 +84,9 @@ export default function Header() {
     <HeaderWrap>
       <Box sx={{ width: '980px', display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex' }} textAlign="left" >
-          <Link href="/" isCurrentPage={location.pathname === '/' && hoverLink === ''} isHover={hoverLink === '/'} onMouseOver={() => setHoverLink('/')} onMouseOut={() => onMouseOutLink()}><HomeOutlinedIcon /><span>Home</span></Link>
-          <Link href="/friends" isCurrentPage={location.pathname === '/friends' && hoverLink === ''} isHover={hoverLink === '/friends'} onMouseOver={() => setHoverLink('/friends')} onMouseOut={() => onMouseOutLink()}><GroupOutlinedIcon /><span>My Friends</span></Link>
-          <Link href="/random" isCurrentPage={location.pathname === '/random' && hoverLink === ''} isHover={hoverLink === '/random'} onMouseOver={() => setHoverLink('/random')} onMouseOut={() => onMouseOutLink()}><PersonAddOutlinedIcon /><span>Random Pick</span></Link>
+          <Link to="/" className="menu-item"><LinkContent isCurrentPage={location.pathname === '/' && hoverLink === ''} isHover={hoverLink === '/'} onMouseOver={() => setHoverLink('/')} onMouseOut={() => onMouseOutLink()}><HomeOutlinedIcon /><span>Home</span></LinkContent></Link>
+          <Link to="/friends" className="menu-item"><LinkContent isCurrentPage={location.pathname === '/friends' && hoverLink === ''} isHover={hoverLink === '/friends'} onMouseOver={() => setHoverLink('/friends')} onMouseOut={() => onMouseOutLink()}><GroupOutlinedIcon /><span>My Friends</span></LinkContent></Link>
+          <Link to="/random" className="menu-item"><LinkContent isCurrentPage={location.pathname === '/random' && hoverLink === ''} isHover={hoverLink === '/random'} onMouseOver={() => setHoverLink('/random')} onMouseOut={() => onMouseOutLink()}><PersonAddOutlinedIcon /><span>Random Pick</span></LinkContent></Link>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
           <span>Gender: </span>
