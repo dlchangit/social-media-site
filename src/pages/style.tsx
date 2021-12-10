@@ -10,3 +10,9 @@ export const ContentWrap = styled.div`
     padding-top: 20px;
     width: 980px;
 `
+
+export const PageContentTop = styled.div`
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 15px;
+`

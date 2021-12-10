@@ -90,17 +90,20 @@ export default function Header() {
         <Box sx={{ display: 'flex' }} textAlign="left" >
           <Link to="/" className="menu-item">
             <LinkContent isCurrentPage={location.pathname === '/' && hoverLink === ''} isHover={hoverLink === '/'} onMouseOver={() => setHoverLink('/')} onMouseOut={() => onMouseOutLink()}>
-              <HomeOutlinedIcon />Home
+              <HomeOutlinedIcon />
+              <span>Home</span>
             </LinkContent>
           </Link>
           <Link to="/friends" className="menu-item">
             <LinkContent isCurrentPage={location.pathname === '/friends' && hoverLink === ''} isHover={hoverLink === '/friends'} onMouseOver={() => setHoverLink('/friends')} onMouseOut={() => onMouseOutLink()}>
-              <GroupOutlinedIcon />My Friends
+              <GroupOutlinedIcon />
+              <span>My Friends</span>
             </LinkContent>
           </Link>
           <Link to="/random" className="menu-item">
             <LinkContent isCurrentPage={location.pathname === '/random' && hoverLink === ''} isHover={hoverLink === '/random'} onMouseOver={() => setHoverLink('/random')} onMouseOut={() => onMouseOutLink()}>
-              <PersonAddOutlinedIcon />Random Pick
+              <PersonAddOutlinedIcon />
+              <span>Random Pick</span>
             </LinkContent>
           </Link>
         </Box>

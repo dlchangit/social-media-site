@@ -2,7 +2,7 @@ import { Grid, Stack } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "..";
-import { ContentWrap, PageWrap } from "./style"
+import { ContentWrap, PageContentTop, PageWrap } from "./style"
 import ImageAvatar from "../components/ImageAvatar"
 
 export default function Home() {
@@ -14,6 +14,7 @@ export default function Home() {
         <PageWrap>
             <ContentWrap>
             {/* <Stack direction="row" spacing={1}> */}
+            <PageContentTop>All Users</PageContentTop>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 2 }}>
                 {userData.map((it: any, idx: number) => {
                     if(selectedGender === 'M' && it.gender === 'male' || selectedGender === 'F' && it.gender === 'female' || selectedGender === 'All') {
