@@ -9,6 +9,7 @@ import { setGender } from '../actions'
 import { RootState } from '..';
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom';
+import { SelectionButtonList } from "../components/";
 
 const HeaderWrap = styled.div`
   padding-top: 25px;
@@ -109,14 +110,15 @@ export default function Header() {
           </Link>
         </Box>
         {location.pathname.indexOf('/user') === -1 && (
-          <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
-            <span>Gender: </span>
-            {genderSelection.map((it: string, idx: number) =>
-                <GenderButton key={idx} onClick={() => dispatch(setGender(it))} isSelected={selectedGender === it}>
-                {it}
-              </GenderButton>
-            )}
-          </Box>
+          <SelectionButtonList selection={genderSelection} selectedOption={selectedGender} action={setGender}  />
+          // <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
+          //   <span>Gender: </span>
+          //   {genderSelection.map((it: string, idx: number) =>
+          //       <GenderButton key={idx} onClick={() => dispatch(setGender(it))} isSelected={selectedGender === it}>
+          //       {it}
+          //     </GenderButton>
+          //   )}
+          // </Box>
         )}
       </Box>
     </HeaderWrap>

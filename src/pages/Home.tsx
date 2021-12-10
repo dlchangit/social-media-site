@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "..";
 import { ContentWrap, PageContentTop, UserPerRowButton, PageWrap } from "./style"
-import ImageAvatar from "../components/ImageAvatar"
+import { ImageAvatar, SelectionButtonList } from "../components/";
 import { setUserPerRow } from "../actions";
 import { Link } from "react-router-dom";
 
@@ -19,14 +19,15 @@ export default function Home() {
             {/* <Stack direction="row" spacing={1}> */}
             <PageContentTop>
                 <span className='title'>All Users</span>
-                <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
+                <SelectionButtonList selection={userPerRowSelection} selectedOption={userPerRow} action={setUserPerRow}  />
+                {/* <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
                     <span>User per row: </span>
                     {userPerRowSelection.map((it: number, idx: number) => 
                         <UserPerRowButton key={idx} onClick={() => dispatch(setUserPerRow(it))} isSelected={userPerRow === it}>
                             {it}
                         </UserPerRowButton>
                     )}
-                </Box>
+                </Box> */}
             </PageContentTop>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 2 }}>
                 {userData.map((it: any, idx: number) => {

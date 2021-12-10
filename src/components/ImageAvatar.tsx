@@ -8,7 +8,7 @@ interface ImageAvatarProps {
   imgSize: number,
 }
 
-export default function ImageAvatar(props: ImageAvatarProps) {
+export function ImageAvatar(props: ImageAvatarProps) {
   
   return (
     <Tooltip title={props.name} arrow >
