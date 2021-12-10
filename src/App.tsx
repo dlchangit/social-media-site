@@ -8,9 +8,9 @@ import {
 import Header from './Header';
 import Home from './pages/Home';
 import Friends from './pages/Friends';
+import User from './pages/User';
 import { setUserData } from './actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '.';
+import { useDispatch } from 'react-redux';
 
 
 function App() {
@@ -33,10 +33,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/friends" element={<Friends/>} />
-          <Route path="/random">
-            {/* <Dashboard /> */}
-            Dash
-          </Route>
+        <Route path="/user/*" element={<User/>} />
         </Routes>
       </div>
     </Router>

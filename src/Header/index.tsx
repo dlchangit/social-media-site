@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGender } from '../actions'
 import { RootState } from '..';
-import { Router, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
 const HeaderWrap = styled.div`
@@ -78,6 +78,7 @@ export default function Header() {
   const selectedGender = useSelector((state:RootState) => state.gender);
   const [hoverLink, setHoverLink] = useState('');
   const dispatch = useDispatch();
+  const genderSelection = ['All', 'M', 'F'];
   // const [gender, setGender] = useState<String>(selectedGender);
 
   const onMouseOutLink = () => {
@@ -107,18 +108,16 @@ export default function Header() {
             </LinkContent>
           </Link>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
-          <span>Gender: </span>
-          <GenderButton onClick={() => dispatch(setGender('All'))} isSelected={selectedGender === 'All'}>
-            All
-          </GenderButton>
-          <GenderButton onClick={() => dispatch(setGender('M'))} isSelected={selectedGender === 'M'}>
-            M
-          </GenderButton>
-          <GenderButton onClick={() => dispatch(setGender('F'))} isSelected={selectedGender === 'F'}>
-            F
-          </GenderButton>
-        </Box>
+        {location.pathname.indexOf('/user') === -1 && (
+          <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
+            <span>Gender: </span>
+            {genderSelection.map((it: string, idx: number) =>
+                <GenderButton key={idx} onClick={() => dispatch(setGender(it))} isSelected={selectedGender === it}>
+                {it}
+              </GenderButton>
+            )}
+          </Box>
+        )}
       </Box>
     </HeaderWrap>
   );
