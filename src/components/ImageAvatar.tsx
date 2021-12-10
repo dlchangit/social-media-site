@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
+import { Tooltip } from '@mui/material';
 
 interface ImageAvatarProps {
-  altText: string,
+  name: string,
   imgSrc: string
   imgSize: number,
 }
@@ -10,10 +11,12 @@ interface ImageAvatarProps {
 export default function ImageAvatar(props: ImageAvatarProps) {
   
   return (
-    <Avatar
-      alt={props.altText}
-      src={props.imgSrc}
-      sx={{ width: props.imgSize, height: props.imgSize }}
-    />
+    <Tooltip title={props.name} arrow >
+      <Avatar
+        alt={props.name}
+        src={props.imgSrc}
+        sx={{ width: props.imgSize, height: props.imgSize }}
+      />
+    </Tooltip>
   );
 }

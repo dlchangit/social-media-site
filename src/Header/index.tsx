@@ -18,6 +18,9 @@ const HeaderWrap = styled.div`
   display: flex;
   justify-content: center;
   box-shadow: 1px 1px 4px #EEEEEE;
+  position: fixed;
+  z-index: 100;
+  background-color: #FFFFFF;
 
   .menu-item {
     text-decoration: none;
