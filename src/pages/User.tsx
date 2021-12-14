@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { RootState } from "..";
 import { PageWrap } from "./style"
 import { useDispatch } from 'react-redux';
-import { setMessage } from '../actions';
+import { setBestFriends, setFriends, setMessage } from '../actions';
 import moment from "moment";
 
 const UserProfileWrap = styled.div`
@@ -23,6 +23,7 @@ const UserProfileWrap = styled.div`
 
 const ProfilePhotoWrap = styled.div`
     width: 250px;
+    min-width: 250px;
     height: 300px;
     border: 1px solid #EEEEEE;
     display: flex;
@@ -108,11 +109,15 @@ export default function User() {
     const [currentUser, setCurrentUser] = useState(location.pathname.split('/')[2]);
     const [userProfile, setUserProfile] = useState({} as any);
     const [messageList, setMessageList] = useState([] as any);
+    const [friendsList, setFriendsList] = useState([] as any);
+    const [bestFriendsList, setBestFriendsList] = useState([] as any);
     // const inputField = MutableRefObject<HTMLInputElement>;
     const messageInput = useRef<HTMLInputElement>(null);
     // const [messageInput, setMessageInput] = useState('');
     const userData = useSelector((state:RootState) => state.userData);
     const message = useSelector((state:RootState) => state.userMsg);
+    const bestFriends = useSelector((state:RootState) => state.bestFriends);
+    const friends = useSelector((state:RootState) => state.friends);
 
     useEffect(() => {
         if(userData.length > 0) {
@@ -124,11 +129,13 @@ export default function User() {
         if(message.length > 0) {
             setMessageList((message.filter((it: any) => it.uuid === currentUser)));
         }
+        if(friends.length > 0) {
+            setFriendsList((friends.filter((it: any) => it === currentUser)));
+        }
+        if(bestFriends.length > 0) {
+            setBestFriendsList((bestFriends.filter((it: any) => it === currentUser)));
+        }
     }, [currentUser, userData])
-    
-    // console.log(messageList);
-    // console.log(message)
-
 
     const sendMessage = (event: any) => {
         if (event.key === "Enter") {
@@ -149,6 +156,20 @@ export default function User() {
             if(messageInput?.current?.value ) messageInput.current.value = '';
         }
     }
+
+    const addFriend = () => {
+        const newFriendsListForCurrent = [currentUser, ...friendsList];
+        const newFriendsListForAll = [currentUser, ...friends];
+        setFriendsList(newFriendsListForCurrent);
+        dispatch(setFriends(newFriendsListForAll));
+    }
+
+    const addBestFriend = () => {
+        const newBestFriendsListForCurrent = [currentUser, ...bestFriendsList];
+        const newBestFriendsListForAll = [currentUser, ...bestFriends];
+        setBestFriendsList(newBestFriendsListForCurrent);
+        dispatch(setBestFriends(newBestFriendsListForAll));
+    }
     
     return(
         <PageWrap>
@@ -157,8 +178,21 @@ export default function User() {
                     <ProfilePhotoWrap>
                         <img src={userProfile?.picture?.large??'' } />
                         <div>
-                            <Button>Add Friend</Button>
-                            <Button>Mark as best friend</Button>
+                            {friendsList.length === 0 && <Button onClick={addFriend}>Add Friend</Button>}
+                            {friendsList.map((it:any, idx: number) => {
+                                if(idx === friendsList.length - 1 && it !== currentUser) {
+                                    return (<><Button>Add Friend</Button><Button key='0' onClick={addFriend}>Add Friend</Button></>);
+                                }
+                                if(it === currentUser && bestFriendsList.length > 0) {
+                                    for(let i = 0; i < bestFriendsList.length; i++) {
+                                        if(bestFriendsList[i] === currentUser) break;
+                                        if(i === bestFriendsList.length - 1 && bestFriendsList[i] !== currentUser) {
+                                            return (<Button key='0' onClick={addBestFriend}>Mark as best friend</Button>);
+                                        }
+                                    }
+                                }
+                            })}
+                            {friendsList.length > 0 && bestFriendsList.length === 0 && <Button onClick={addBestFriend}>Mark as best friend</Button>}
                         </div>
                     </ProfilePhotoWrap>
                     <ContentRight>
@@ -174,7 +208,7 @@ export default function User() {
                         <input type='text' onKeyDown={sendMessage} ref={messageInput} />
                         <MessageList>
                             {messageList.map((it: any, idx: number) =>
-                                <div key={idx}>{it.message} <span>{it.datetime}</span></div>
+                                <div key={idx}>- {it.message} <span>{it.datetime}</span></div>
                             )}
                             {/* {console.log(moment(new Date()).format('MM/DD/YYYY HH:mm'))} */}
                             

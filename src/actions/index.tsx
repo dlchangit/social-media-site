@@ -24,4 +24,18 @@ export const setMessage = (data: any) => {
         type: 'SET_MESSAGE',
         payload: data
     }
-}
+};
+
+export const setFriends = (data: any) => {
+    return {
+        type: 'SET_FRIENDS',
+        payload: data
+    }
+};
+
+export const setBestFriends = (data: any) => {
+    return {
+        type: 'SET_BEST_FRIENDS',
+        payload: data
+    }
+};
