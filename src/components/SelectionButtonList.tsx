@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 interface SelectionButtonListProps {
+    title: string,
     selection: any[],
     selectedOption: any,
     action: (data: any) => void,
@@ -11,7 +12,7 @@ interface SelectionButtonListProps {
   }
 
 const SelectionListButton = styled.button<{isSelected?: boolean}>`
-    width: 30px;
+    width: 36px;
     margin-left: 5px;
     background-color: white;
     border: 1px solid transparent;
@@ -34,7 +35,7 @@ export function SelectionButtonList(props: SelectionButtonListProps) {
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
-            <span>User per row: </span>
+            <span>{props.title}: </span>
             {props.selection.map((it: number, idx: number) => 
                 <SelectionListButton key={idx} onClick={() => dispatch(props.action(it))} isSelected={props.selectedOption === it}>
                     {it}

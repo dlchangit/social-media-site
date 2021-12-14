@@ -90,7 +90,7 @@ export default function Header() {
           </Link>
         </Box>
         {location.pathname.indexOf('/user') === -1 && (
-          <SelectionButtonList selection={genderSelection} selectedOption={selectedGender} action={setGender}  />
+          <SelectionButtonList title='Gender' selection={genderSelection} selectedOption={selectedGender} action={setGender}  />
           // <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
           //   <span>Gender: </span>
           //   {genderSelection.map((it: string, idx: number) =>

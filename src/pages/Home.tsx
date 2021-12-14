@@ -19,7 +19,7 @@ export default function Home() {
             {/* <Stack direction="row" spacing={1}> */}
             <PageContentTop>
                 <span className='title'>All Users</span>
-                <SelectionButtonList selection={userPerRowSelection} selectedOption={userPerRow} action={setUserPerRow}  />
+                <SelectionButtonList title='User per row' selection={userPerRowSelection} selectedOption={userPerRow} action={setUserPerRow}  />
                 {/* <Box sx={{ display: 'flex', alignItems: 'center' }} textAlign="right" >
                     <span>User per row: </span>
                     {userPerRowSelection.map((it: number, idx: number) => 

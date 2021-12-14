@@ -5,6 +5,7 @@ export const initialState = {
     userMsg: [],
     friends: [],
     bestFriends: [],
+    displayBestFriendsOnly: 'No'
 };
     
 export const actionTypes = {
@@ -14,6 +15,7 @@ export const actionTypes = {
     SET_MESSAGE: 'SET_MESSAGE',
     SET_FRIENDS: 'SET_FRIENDS',
     SET_BEST_FRIENDS: 'SET_BEST_FRIENDS',
+    SET_DISPLAY_BEST_FRIENDS_ONLY: 'SET_DISPLAY_BEST_FRIENDS_ONLY',
 };
     
 const rootReducer = (state: any = initialState, action: { type: any; payload: any; }) => {
@@ -47,6 +49,11 @@ const rootReducer = (state: any = initialState, action: { type: any; payload: an
             return {
                 ...state,
                 bestFriends: action.payload,
+            };
+        case actionTypes.SET_DISPLAY_BEST_FRIENDS_ONLY:
+            return {
+                ...state,
+                displayBestFriendsOnly: action.payload,
             };
 
         default:

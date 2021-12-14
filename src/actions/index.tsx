@@ -39,3 +39,10 @@ export const setBestFriends = (data: any) => {
         payload: data
     }
 };
+
+export const setDisplayBestFriendsOnly = (data: any) => {
+    return {
+        type: 'SET_DISPLAY_BEST_FRIENDS_ONLY',
+        payload: data
+    }
+};
