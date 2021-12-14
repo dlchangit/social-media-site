@@ -4,7 +4,7 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import { Box } from '@mui/system';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { setGender } from '../actions'
 import { RootState } from '..';
 import { useLocation } from 'react-router-dom'
@@ -22,7 +22,6 @@ const HeaderWrap = styled.div`
   position: fixed;
   z-index: 100;
   background-color: #FFFFFF;
-
   .menu-item {
     text-decoration: none;
   }
@@ -59,7 +58,7 @@ export default function Header() {
   const location = useLocation();
   const selectedGender = useSelector((state:RootState) => state.gender);
   const [hoverLink, setHoverLink] = useState('');
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const genderSelection = ['All', 'M', 'F'];
   // const [gender, setGender] = useState<String>(selectedGender);
 

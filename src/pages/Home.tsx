@@ -1,6 +1,6 @@
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "..";
 import { ContentWrap, PageContentTop, PageWrap } from "./style"
 import { ImageAvatar, SelectionButtonList } from "../components/";
@@ -11,7 +11,7 @@ export default function Home() {
     const userData = useSelector((state:RootState) => state.userData);
     const selectedGender = useSelector((state:RootState) => state.gender);
     const userPerRow = useSelector((state:RootState) => state.userPerRow);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const userPerRowSelection = [5, 10, 15];
     return(
         <PageWrap>
