@@ -13,7 +13,7 @@ import { SelectionButtonList } from "../components/";
 
 const HeaderWrap = styled.div`
   padding-top: 25px;
-  width: 100%;
+  width: 100%; 
   height: 50px;
   border-bottom: 1px solid #EEEEEE;
   display: flex;
