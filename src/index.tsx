@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import reducer from './reducers';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+import GlobalStyle from "./assets/styles/globalStyle";
 
 export const store = createStore(
   reducer
@@ -16,6 +17,7 @@ export type RootState = ReturnType<typeof store.getState>
 ReactDOM.render(
   <React.StrictMode>
     <Provider store = {store}>
+      <GlobalStyle />
       <App />
     </Provider>
   </React.StrictMode>,

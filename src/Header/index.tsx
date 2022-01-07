@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom';
 import { SelectionButtonList } from "../components/";
 
 const HeaderWrap = styled.div`
+  font-family: "Open Sans";
+  font-weight: 600;
   padding-top: 25px;
   width: 100%; 
   height: 50px;
