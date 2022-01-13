@@ -192,8 +192,6 @@ export const Tab: React.FC<TabProps> = (props) => {
   const [activeKey, setActiveKey] = useState<React.Key | undefined>(defaultKey ?? undefined);
   const [hoverKey, setHoverKey] = useState<React.Key | undefined>(defaultKey ?? undefined);
   const [breakpoint, setBreakPoint] = useState('t');
-  const ref = useRef<HTMLDivElement>(null);
-  const [bodyHeight, setBodyHeight] = useState<number>(0);
   const contentRef = useRef([] as any[]);
 
   useEffect(() => {
@@ -239,14 +237,6 @@ export const Tab: React.FC<TabProps> = (props) => {
     }
 
   };
-
-  useEffect(() => {
-    if (ref.current != null) {
-      setBodyHeight(ref.current.clientHeight);
-      console.log(ref.current.clientHeight)
-
-    }
-  }, [])
 
   return (
     <TabContainer className={className}>
